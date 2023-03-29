@@ -19,8 +19,6 @@ public class GyroManager : MonoBehaviour
     {
         //GyroModifyCamera();
 
-        Debug.Log(Input.deviceOrientation);
-
         if(Input.deviceOrientation == DeviceOrientation.Portrait)
         {
             transform.rotation = Quaternion.Euler(0f, 0f, 0f);
@@ -28,17 +26,17 @@ public class GyroManager : MonoBehaviour
 
         else if (Input.deviceOrientation == DeviceOrientation.LandscapeLeft)
         {
-            transform.rotation = Quaternion.Euler(0f, -90f, 0f);
+            transform.rotation = Quaternion.Euler(0f, -90f, 90f);
         }
 
         else if (Input.deviceOrientation == DeviceOrientation.LandscapeRight)
         {
-            transform.rotation = Quaternion.Euler(0f, 90f, 0f);
+            transform.rotation = Quaternion.Euler(0f, 90f, -90f);
         }
 
         else if (Input.deviceOrientation == DeviceOrientation.PortraitUpsideDown)
         {
-            transform.rotation = Quaternion.Euler(0f, 180f, 0f);
+            transform.rotation = Quaternion.Euler(0f, 180f, 180f);
         }
     }
 
