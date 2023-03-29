@@ -19,8 +19,6 @@ public class GyroManager : MonoBehaviour
     {
         //GyroModifyCamera();
 
-        Debug.Log(Input.deviceOrientation);
-
         if(Input.deviceOrientation == DeviceOrientation.Portrait)
         {
             transform.rotation = Quaternion.Euler(0f, 0f, 0f);
