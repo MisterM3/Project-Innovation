@@ -14,6 +14,7 @@ public class TCPChatClient : MonoBehaviour
 {
     [SerializeField] private string _hostname = "77.63.65.58";
     [SerializeField] private int _port = 55555;
+    [SerializeField] private TCPMessageReceiver receiver;
 
     private TcpClient _client;
 
@@ -28,7 +29,12 @@ public class TCPChatClient : MonoBehaviour
         {
             byte[] inBytes = StreamUtil.Read(_client.GetStream());
             string inString = Encoding.UTF8.GetString(inBytes);
-            Debug.Log(inString);
+            receiver.DecodeMessage(inString);
+        }
+
+        if (Input.GetKeyDown(KeyCode.T))
+        {
+            TrySending();
         }
     }
 
@@ -48,6 +54,29 @@ public class TCPChatClient : MonoBehaviour
     }
 
 
+
+    private void TrySending()
+    {
+        try
+        {
+
+            //echo client - send one, expect one (hint: that is not how a chat works ...)
+            byte[] outBytes = Encoding.UTF8.GetBytes("test");
+            StreamUtil.Write(_client.GetStream(), outBytes);
+
+      //      byte[] inBytes = StreamUtil.Read(_client.GetStream());
+      //      string inString = Encoding.UTF8.GetString(inBytes);
+      //      Debug.Log(inString);
+        }
+        catch (Exception e)
+        {
+            Debug.Log(e.Message);
+            //for quicker testing, we reconnect if something goes wrong.
+            _client.Close();
+            connectToServer();
+        }
+
+    }
 
     private void onTextEntered(string pInput)
     {

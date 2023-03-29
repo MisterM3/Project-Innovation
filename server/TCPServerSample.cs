@@ -12,7 +12,6 @@ class TCPServerSample
 	 * Read carefully through the comments below.
 	 */
 
-	rhd
 	public static void Main (string[] args)
 	{
 		Console.WriteLine("Server started on port 55555");
