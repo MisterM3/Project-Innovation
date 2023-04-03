@@ -9,12 +9,13 @@ public class MazePuzzle : MonoBehaviour
     [SerializeField] private Button startButton = null;
     [SerializeField] private Button endButton = null;
     [SerializeField] private List<Button> hazardButtons = new List<Button>();
-    [SerializeField] private List<Button> normalButtons = new List<Button>();
 
     private LineRenderer lineRenderer = null;
     private List<Button> selectedButtons = new List<Button>();
     private Button selectedButton = null;
     private Button previousButton = null;
+
+    private bool isDone = false;
 
     void Start()
     {
@@ -26,6 +27,9 @@ public class MazePuzzle : MonoBehaviour
 
     public void SelectButton(Button button)
     {
+        if (isDone)
+            return;
+
         if (selectedButton == null)
         {
             if (button == startButton)
@@ -124,7 +128,8 @@ public class MazePuzzle : MonoBehaviour
     }
     private void WinCondition()
     {
-        Debug.Log("Do something when you win");
+        isDone = true;
+        Debug.Log("do things");
     }
 
 
