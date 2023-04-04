@@ -4,6 +4,11 @@ using UnityEngine;
 
 public class RotateWheel : MonoBehaviour
 {
+
+    [SerializeField] int amountSides = 4;
+
+    [SerializeField] int currentSide = 0;
+
     // Start is called before the first frame update
     void Start()
     {
@@ -39,6 +44,13 @@ public class RotateWheel : MonoBehaviour
             Debug.Log(extra);
 
             oldPosition = newPosition;
+
+            Debug.Log(this.transform.localRotation.eulerAngles.x);
+            
+            if (this.transform.localRotation.x < .5f && this.transform.localRotation.x > 0) currentSide = 0;
+            if (this.transform.localRotation.x < 1.0f && this.transform.localRotation.x > .5f) currentSide = 1;
+            if (this.transform.localRotation.x < 0 && this.transform.localRotation.x > -0.5f) currentSide = 2;
+            if (this.transform.localRotation.x < -0.5f  || this.transform.localRotation.x > -1.0f) currentSide = 3;
         }
     }
           
