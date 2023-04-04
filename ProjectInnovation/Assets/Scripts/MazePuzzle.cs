@@ -52,16 +52,15 @@ public class MazePuzzle : MonoBehaviour
                 selectedButton = button;
                 selectedButtons.Add(button);
                 UpdateLines();
-            }
 
-            if (button == endButton)
-            {
-                if (!CorrectSequenceCheck())
-                    ResetPuzzle();
-                else
-                    WinCondition();
+                if (button == endButton)
+                {
+                    if (!CorrectSequenceCheck())
+                        ResetPuzzle();
+                    else
+                        WinCondition();
+                }
             }
-            
         }
     }
 
