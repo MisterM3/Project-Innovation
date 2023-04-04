@@ -17,17 +17,30 @@ namespace shared
 	 */
 	public static class StreamUtil
 	{
+		private const int HEADER_SIZE = 4;
+
+		/**
+		 * Optimized 'Available' check that FIRST checks if header data is available and THEN checks 
+		 * if the actual data is available as well.
+		 */
+		public static bool Available(TcpClient pClient)
+		{
+			if (pClient.Available < HEADER_SIZE) return false;
+			byte[] sizeHeader = new byte[HEADER_SIZE];
+			pClient.Client.Receive(sizeHeader, HEADER_SIZE, SocketFlags.Peek);
+			int messageSize = BitConverter.ToInt32(sizeHeader, 0);
+			return pClient.Available >= HEADER_SIZE + messageSize;
+		}
+
 		/**
 		 * Writes the size of the given byte array into the stream and then the bytes themselves.
 		 */
-
-		//Test
-		public static void Write(NetworkStream pStream, byte[] pBytes)
+		public static void Write(NetworkStream pStream, byte[] pMessage)
 		{
 			//convert message length to 4 bytes and write those bytes into the stream
-			pStream.Write(BitConverter.GetBytes(pBytes.Length), 0, 4);
+			pStream.Write(BitConverter.GetBytes(pMessage.Length), 0, HEADER_SIZE);
 			//now send the bytes of the message themselves
-			pStream.Write(pBytes, 0, pBytes.Length);
+			pStream.Write(pMessage, 0, pMessage.Length);
 		}
 
 		/**
@@ -36,7 +49,7 @@ namespace shared
 		public static byte[] Read(NetworkStream pStream)
 		{
 			//get the message size first
-			int byteCountToRead = BitConverter.ToInt32(Read(pStream, 4), 0);
+			int byteCountToRead = BitConverter.ToInt32(Read(pStream, HEADER_SIZE), 0);
 			//then read that amount of bytes
 			return Read(pStream, byteCountToRead);
 		}
@@ -69,7 +82,7 @@ namespace shared
 			return (totalBytesRead == pByteCount) ? bytes : null;
 		}
 	}
-}
 
+}
 
 
