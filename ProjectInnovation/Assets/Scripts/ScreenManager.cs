@@ -7,11 +7,11 @@ public class ScreenManager : MonoBehaviour
     DeviceOrientation phoneOrientation;
     [SerializeField] private List<Canvas> screens;
 
-    // Update is called once per frame
     void Update()
     {
         phoneOrientation = Input.deviceOrientation;
 
+        //switch that changes the camera's rotation and active canvas based on the phone's orientation.
         switch (phoneOrientation)
         {
             case DeviceOrientation.Portrait:
@@ -38,6 +38,10 @@ public class ScreenManager : MonoBehaviour
         }
     }
 
+    /// <summary>
+    /// Switched the active canvas in the list to the given canvas
+    /// </summary>
+    /// <param name="canvas"></param>
     private void SwitchCanvas(Canvas canvas)
     {
         foreach (var item in screens)

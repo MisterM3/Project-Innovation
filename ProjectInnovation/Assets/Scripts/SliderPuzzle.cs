@@ -16,12 +16,17 @@ public class SliderPuzzle : MonoBehaviour
         }
     }
 
+    // Called when value of a slider changes
     public void ValueChangeCheck()
     {
         if (CheckSequence())
             WinCondition();
     }
 
+    /// <summary>
+    /// Compares values of sliders.value and correct value lists
+    /// </summary>
+    /// <returns></returns>
     private bool CheckSequence()
     {
         for (int i = 0; i < sliders.Count; i++)
@@ -32,6 +37,9 @@ public class SliderPuzzle : MonoBehaviour
         return true;
     }
 
+    /// <summary>
+    /// Called when puzzle is completed correctly
+    /// </summary>
     private void WinCondition()
     {
         foreach (var item in sliders)

@@ -25,11 +25,17 @@ public class MazePuzzle : MonoBehaviour
         lineRenderer.material.color = Color.blue;
     }
 
+    /// <summary>
+    /// Function to be called when a button in the maze is pressed
+    /// </summary>
+    /// <param name="button"></param>
     public void SelectButton(Button button)
     {
+        //Do nothing if puzzle is finished
         if (isDone)
             return;
 
+        //If the selectedButton is null it means the puzzle has not started yet so the startButton has to be the one that was pressed first
         if (selectedButton == null)
         {
             if (button == startButton)
@@ -45,6 +51,7 @@ public class MazePuzzle : MonoBehaviour
 
             previousButton = selectedButton;
 
+            //Check if the pressed button is not diagonal from the previous button in the sequence and if it is not already in the sequence
             if (button.transform.position.x == previousButton.transform.position.x ^
                 button.transform.position.y == previousButton.transform.position.y &&
                 !selectedButtons.Contains(button))
@@ -53,6 +60,7 @@ public class MazePuzzle : MonoBehaviour
                 selectedButtons.Add(button);
                 UpdateLines();
 
+                //Check if the pressed button is the final button, at this point we check if it is right or wrong
                 if (button == endButton)
                 {
                     if (!CorrectSequenceCheck())
@@ -63,7 +71,10 @@ public class MazePuzzle : MonoBehaviour
             }
         }
     }
-
+    
+    /// <summary>
+    /// Updates lineRenderer lines in the sequence of buttons
+    /// </summary>
     private void UpdateLines()
     {
         Vector3[] positions = new Vector3[selectedButtons.Count];
@@ -76,14 +87,17 @@ public class MazePuzzle : MonoBehaviour
         lineRenderer.SetPositions(positions);
     }
 
+    //Simple bool that checks if the sequence is correct
     private bool CorrectSequenceCheck()
     {
+        //check if the sequence of buttons contains a hazardButton
         foreach (Button item in hazardButtons)
         {
             if (selectedButtons.Contains(item))
                 return false;
         }
 
+        //check inbetween each button in the sequence if there is a hazard tile in the way
         for (int i = 0; i < selectedButtons.Count; i++)
         {
             if (i + 1 >= selectedButtons.Count)
@@ -118,6 +132,9 @@ public class MazePuzzle : MonoBehaviour
         return true;
     }
 
+    /// <summary>
+    /// Resets puzzle
+    /// </summary>
     private void ResetPuzzle()
     {
         selectedButtons.Clear();
@@ -125,6 +142,10 @@ public class MazePuzzle : MonoBehaviour
         previousButton = null;
         selectedButton = null;
     }
+
+    /// <summary>
+    /// Called when puzzle is completed correctly
+    /// </summary>
     private void WinCondition()
     {
         isDone = true;
