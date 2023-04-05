@@ -25,10 +25,6 @@ public class MazePuzzle : MonoBehaviour
         lineRenderer.material.color = Color.blue;
     }
 
-    /// <summary>
-    /// Function to be called when a button in the maze is pressed
-    /// </summary>
-    /// <param name="button"></param>
     public void SelectButton(Button button)
     {
         //Do nothing if puzzle is finished
@@ -42,6 +38,7 @@ public class MazePuzzle : MonoBehaviour
             {
                 selectedButton = button;
                 selectedButtons.Add(button);
+                UpdateLines();
             }
             else
                 return;
@@ -53,8 +50,7 @@ public class MazePuzzle : MonoBehaviour
 
             //Check if the pressed button is not diagonal from the previous button in the sequence and if it is not already in the sequence
             if (button.transform.position.x == previousButton.transform.position.x ^
-                button.transform.position.y == previousButton.transform.position.y &&
-                !selectedButtons.Contains(button))
+            button.transform.position.y == previousButton.transform.position.y )
             {
                 selectedButton = button;
                 selectedButtons.Add(button);
@@ -77,14 +73,13 @@ public class MazePuzzle : MonoBehaviour
     /// </summary>
     private void UpdateLines()
     {
-        Vector3[] positions = new Vector3[selectedButtons.Count];
+        Vector3 position = new Vector3();
+        lineRenderer.positionCount = selectedButtons.Count;
 
-        for (int i = 0; i < selectedButtons.Count; i++)
-        {
-            positions[i] = selectedButtons[i].gameObject.transform.position;
-        }
-        lineRenderer.positionCount = positions.Length;
-        lineRenderer.SetPositions(positions);
+        position = selectedButtons[selectedButtons.Count - 1].gameObject.transform.position;
+
+        lineRenderer.SetPosition(selectedButtons.Count - 1, position);
+
     }
 
     //Simple bool that checks if the sequence is correct
@@ -131,7 +126,8 @@ public class MazePuzzle : MonoBehaviour
 
         return true;
     }
-
+    
+    
     /// <summary>
     /// Resets puzzle
     /// </summary>
