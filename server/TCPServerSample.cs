@@ -4,57 +4,57 @@ using System.Net;
 using System.Collections.Generic;
 using shared;
 using System.Threading;
-
+using server;
 class TCPServerSample
 {
 	/**
 	 * This class implements a simple concurrent TCP Echo server.
 	 * Read carefully through the comments below.
 	 */
-
-	public static void Main (string[] args)
+	public static void Main(string[] args)
 	{
-		Console.WriteLine("Server started on port 55555");
 
-		TcpListener listener = new TcpListener (IPAddress.Any, 55555);
-		listener.Start ();
+		TCPServerSample server = new TCPServerSample();
+		server.run();
+	}
 
-		List<TcpClient> clients = new List<TcpClient>();
+
+	LobbyRoom _lobbyRoom;
+	private void run()
+	{
+		Log.LogInfo("Starting server on port 55555", this, ConsoleColor.Gray);
+
+		//start listening for incoming connections (with max 50 in the queue)
+		//we allow for a lot of incoming connections, so we can handle them
+		//and tell them whether we will accept them or not instead of bluntly declining them
+		TcpListener listener = new TcpListener(IPAddress.Any, 55555);
+		listener.Start(50);
 
 		while (true)
 		{
-			//First big change with respect to example 001
-			//We no longer block waiting for a client to connect, but we only block if we know
-			//a client is actually waiting (in other words, we will not block)
-			//In order to serve multiple clients, we add that client to a list
-			while (listener.Pending()) { 
-				clients.Add(listener.AcceptTcpClient());
-				Console.WriteLine("Accepted new client.");
-			}
-
-			//Second big change, instead of blocking on one client, 
-			//we now process all clients IF they have data available
-			foreach (TcpClient client in clients)
+			//check for new members	
+			if (listener.Pending())
 			{
-				if (client.Available == 0) continue;
-				NetworkStream stream = client.GetStream();
-				byte[] message = StreamUtil.Read(stream);
-				//StreamUtil.Write(stream, StreamUtil.Read(stream));
-
-				foreach(TcpClient client2 in clients)
-                {
-					NetworkStream stream2 = client2.GetStream();
-
-					StreamUtil.Write(stream2, message);
-
-
-				}
+				//get the waiting client
+				Log.LogInfo("Accepting new client...", this, ConsoleColor.White);
+				TcpClient client = listener.AcceptTcpClient();
+				//and wrap the client in an easier to use communication channel
+				TcpMessageChannel channel = new TcpMessageChannel(client);
+				//and add it to the login room for further 'processing'
+				_lobbyRoom.AddMember(channel);
 			}
 
-			//Although technically not required, now that we are no longer blocking, 
-			//it is good to cut your CPU some slack
+			_lobbyRoom.Update();
+
 			Thread.Sleep(100);
 		}
+
+	}
+
+	private TCPServerSample()
+	{
+		_lobbyRoom = new LobbyRoom(this);
+
 	}
 }
 

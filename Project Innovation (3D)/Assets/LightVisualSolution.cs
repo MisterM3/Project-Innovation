@@ -11,15 +11,19 @@ public class LightVisualSolution : MonoBehaviour
     [SerializeField] GameObject prefabOff;
     public void Start()
     {
-        bool[,] lights = puzzle.getLightsCorrect();
+      //  bool[,] lights = puzzle.getLightsCorrect();
 
+    }
+
+    public void SetCorrectLights(bool[,] lights)
+    {
         for (int i = 0; i < lights.GetLength(0); i++)
         {
             for (int j = 0; j < lights.GetLength(1); j++)
             {
                 Vector3 localPos = new Vector3(i * spacing - 10, j * spacing, 0);
                 Debug.Log("test");
-                if (lights[i,j]) Instantiate(prefabOn, localPos, Quaternion.identity, this.transform);
+                if (lights[i, j]) Instantiate(prefabOn, localPos, Quaternion.identity, this.transform);
                 else Instantiate(prefabOff, localPos, Quaternion.identity, this.transform);
 
             }

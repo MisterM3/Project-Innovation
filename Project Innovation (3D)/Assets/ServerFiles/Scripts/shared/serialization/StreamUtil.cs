@@ -1,8 +1,6 @@
 ﻿using System;
 using System.Net.Sockets;
 
-namespace shared
-{
 	/**
 	 * StreamUtil class should be used whenever you want to send/receive bytes over a TcpClient connection.
 	 * The reason is that communication across a TcpClient does not preserve message boundaries.
@@ -83,6 +81,6 @@ namespace shared
 		}
 	}
 
-}
+
 
 

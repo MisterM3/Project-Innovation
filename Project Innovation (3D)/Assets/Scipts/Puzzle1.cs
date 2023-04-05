@@ -1,3 +1,4 @@
+using shared;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
@@ -35,6 +36,21 @@ public class Puzzle1 : MonoBehaviour
         }
     }
 
+    public void Update()
+    {
+
+        if (Input.GetKeyDown(KeyCode.Y))
+        {
+            PuzzleOneSetup setup = new PuzzleOneSetup();
+            setup.name = "light";
+            setup.lightBool = lightsCorrect;
+
+            TCPChatClient1.Instance.sendMessage(setup);
+
+            Debug.Log("fafeafa");
+        }
+    }
+
 
     public bool[,] getLightsCorrect()
     {
@@ -63,5 +79,11 @@ public class Puzzle1 : MonoBehaviour
         }
 
         return true;
+    }
+
+
+    public void SendCorrectLight()
+    {
+
     }
 }

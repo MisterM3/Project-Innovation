@@ -16,7 +16,7 @@ namespace shared
     {
         abstract public void Serialize(Packet pPacket);
         abstract public void Deserialize(Packet pPacket);
-
+        
         public override string ToString()
         {
             StringBuilder builder = new StringBuilder();

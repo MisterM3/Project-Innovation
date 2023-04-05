@@ -10,8 +10,8 @@ namespace shared
 	public class Packet
 	{
 		private BinaryWriter writer;	//only used in write mode, to write bytes into a byte array
-		private BinaryReader reader;	//only used in read mode, to read bytes from a byte array
-
+		private BinaryReader reader;    //only used in read mode, to read bytes from a byte array
+		
 		/**
 		 * Create a Packet for writing.
 		 */

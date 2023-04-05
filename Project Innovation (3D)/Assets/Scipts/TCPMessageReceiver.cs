@@ -1,3 +1,4 @@
+using shared;
 using System;
 using System.Collections;
 using System.Collections.Generic;
@@ -23,7 +24,8 @@ public class TCPMessageReceiver : MonoBehaviour
 
         foreach(MessageEvent messageEvent in messages)
         {
-
+            Packet packet = new Packet();
+            
             Debug.Log(messageEvent.messageName);
 
             if (messageEvent.messageName == message)
