@@ -2,6 +2,7 @@ using shared;
 using System;
 using System.Collections;
 using System.Collections.Generic;
+using UnityEditor.VersionControl;
 using UnityEngine;
 using UnityEngine.Events;
 
@@ -11,12 +12,18 @@ public class TCPMessageReceiver : MonoBehaviour
     public struct MessageEvent
     {
         public string messageName;
-        public UnityEvent fireEvent;
+        public ASerializableUnityEvent fireEvent;
+    }
+
+    [System.Serializable]
+    public class ASerializableUnityEvent : UnityEvent<ASerializable>
+    {
+        public ASerializable AserParam;
     }
 
     public List<MessageEvent> messages;
 
-
+    /*
     public void DecodeMessage(string message)
     {
 
@@ -31,6 +38,23 @@ public class TCPMessageReceiver : MonoBehaviour
             if (messageEvent.messageName == message)
             {
                 messageEvent.fireEvent.Invoke();
+            }
+        }
+    }
+    */
+
+    public void DecodeASerializable(ASerializable solution)
+    {
+        
+        foreach (MessageEvent messageEvent in messages)
+        {
+           // Packet packet = new Packet();
+
+            Debug.Log(solution.name);
+
+            if (messageEvent.messageName == solution.name)
+            {
+                messageEvent.fireEvent.Invoke(solution) ;
             }
         }
     }

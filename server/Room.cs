@@ -91,6 +91,17 @@ namespace server
 		 */
 		private void checkFaultyMember(TcpMessageChannel pMember)
 		{
+			try
+            {
+				HeartBeat heartBeat = new HeartBeat();
+				heartBeat.name = "hb";
+				pMember.SendMessage(heartBeat);
+            }
+			catch (Exception e)
+            {
+
+            }
+			
 			if (!pMember.Connected) removeAndCloseMember(pMember);
 		}
 

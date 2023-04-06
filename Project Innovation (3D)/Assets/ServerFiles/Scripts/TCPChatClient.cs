@@ -29,7 +29,7 @@ public class TCPChatClient : MonoBehaviour
         {
             byte[] inBytes = StreamUtil.Read(_client.GetStream());
             string inString = Encoding.UTF8.GetString(inBytes);
-            receiver.DecodeMessage(inString);
+         //   receiver.DecodeMessage(inString);
         }
 
         if (Input.GetKeyDown(KeyCode.T))

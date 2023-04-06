@@ -42,6 +42,10 @@ public class TCPChatClient1 : MonoBehaviour
         {
             ASerializable message = _client.ReceiveMessage();
 
+            Debug.Log("reveived");
+            receiver.DecodeASerializable(message);
+            return;
+
             if (message is ChatMessage)
             {
                 ChatMessage messageC = (ChatMessage)message;
@@ -57,6 +61,11 @@ public class TCPChatClient1 : MonoBehaviour
                     Debug.Log(b);
                 }
             }
+            if (message is SliderSolution)
+            {
+                SliderSolution slider = (SliderSolution)message;
+
+            }
             else Debug.Log("test");
         }
 
@@ -70,7 +79,8 @@ public class TCPChatClient1 : MonoBehaviour
     {
         try
         {
-			_client = new TcpMessageChannel();
+           // testClient = new TcpClient();
+            _client = new TcpMessageChannel();
             _client.Connect(_hostname, _port);
             Debug.Log("Connected to server.");
         }
@@ -87,30 +97,10 @@ public class TCPChatClient1 : MonoBehaviour
     {
         try
         {
-
-            //echo client - send one, expect one (hint: that is not how a chat works ...)
-            /*
-            PuzzleOneSetup setup = new PuzzleOneSetup();
-
-
-            setup.name = "test";
-            setup.lightBool = new bool[3, 2];
-            b[1,0].Add(true);
-            b.Add(false);
-            b.Add(false);
-            b.Add(true);
-            b.Add(false);
-            b.TrimExcess();
-            setup.lightBool = b;
-            _client.SendMessage(setup);
-            */
-           // Debug.Log("test");
-      //      byte[] outBytes = Encoding.UTF8.GetBytes("test");
-      //      StreamUtil.Write(_client.GetStream(), outBytes);
-
-      //      byte[] inBytes = StreamUtil.Read(_client.GetStream());
-      //      string inString = Encoding.UTF8.GetString(inBytes);
-      //      Debug.Log(inString);
+            ChatMessage message = new ChatMessage();
+            message.name= "test";
+            message.message = "da";
+            sendMessage(message);
         }
         catch (Exception e)
         {
@@ -148,6 +138,7 @@ public class TCPChatClient1 : MonoBehaviour
 
     public void sendMessage(ASerializable ser)
     {
+        Debug.Log("te");
         _client.SendMessage(ser);
     }
 

@@ -24,6 +24,7 @@ namespace server
 
 			//print some info in the lobby (can be made more applicable to the current member that joined)
 			ChatMessage simpleMessage = new ChatMessage();
+			simpleMessage.name = "name";
 			simpleMessage.message = "Client 'John Doe' has joined the lobby!";
 			pMember.SendMessage(simpleMessage);
 
@@ -46,7 +47,7 @@ namespace server
 		protected override void handleNetworkMessage(ASerializable pMessage, TcpMessageChannel pSender)
 		{
 			//if (pMessage is ChangeReadyStatusRequest) handleReadyNotification(pMessage as ChangeReadyStatusRequest, pSender);
-			if (pMessage is PuzzleOneSetup) sendToAll(pMessage);
+			sendToAll(pMessage);
 		}
 		/*
 		private void handleReadyNotification(ChangeReadyStatusRequest pReadyNotification, TcpMessageChannel pSender)
