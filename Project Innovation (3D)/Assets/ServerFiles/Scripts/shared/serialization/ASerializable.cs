@@ -14,6 +14,8 @@ namespace shared
      */
     public abstract class ASerializable
     {
+
+        public string name;
         abstract public void Serialize(Packet pPacket);
         abstract public void Deserialize(Packet pPacket);
         
