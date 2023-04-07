@@ -80,7 +80,9 @@ public class MazePuzzle : MonoBehaviour
         Vector3 position = new Vector3();
         lineRenderer.positionCount = selectedButtons.Count;
 
-        position = selectedButtons[selectedButtons.Count - 1].gameObject.transform.position;
+        position = selectedButtons[selectedButtons.Count - 1].gameObject.transform.localPosition + new Vector3(0.5f, -0.5f);
+
+        lineRenderer.useWorldSpace = false;
 
         lineRenderer.SetPosition(selectedButtons.Count - 1, position);
 
@@ -102,28 +104,29 @@ public class MazePuzzle : MonoBehaviour
             if (i + 1 >= selectedButtons.Count)
                 break;
 
-            Vector2 position1 = selectedButtons[i].transform.position;
-            Vector2 position2 = selectedButtons[i + 1].transform.position;
+            Vector2 position1 = selectedButtons[i].transform.localPosition;
+            Vector2 position2 = selectedButtons[i + 1].transform.localPosition;
 
             foreach (Button item in hazardButtons)
             {
-                if (item.transform.position.y == position1.y && item.transform.position.y == position2.y)
+                if (item.transform.localPosition.y == position1.y && item.transform.localPosition.y == position2.y)
                 {
-                    if (item.transform.position.x > position1.x && item.transform.position.x < position2.x ||
-                        item.transform.position.x < position1.x && item.transform.position.x > position2.x)
+                    if (item.transform.localPosition.x > position1.x && item.transform.localPosition.x < position2.x ||
+                        item.transform.localPosition.x < position1.x && item.transform.localPosition.x > position2.x)
                     {
                         return false;
                     }
 
                 }
 
-                if (item.transform.position.x == position1.x && item.transform.position.x == position2.x)
-                {
-                    if (item.transform.position.y > position1.y && item.transform.position.y < position2.y ||
-                        item.transform.position.y < position1.y && item.transform.position.y > position2.y)
+                if (item.transform.localPosition.x == position1.x && item.transform.localPosition.x == position2.x)
+                { 
+                    if (item.transform.localPosition.y > position1.y && item.transform.localPosition.y < position2.y ||
+                        item.transform.localPosition.y < position1.y && item.transform.localPosition.y > position2.y)
                     {
                         return false;
                     }
+
                 }
             }
         }
@@ -163,7 +166,7 @@ public class MazePuzzle : MonoBehaviour
             //Do shit
             Debug.Log("doneF");
         }
-        
+
     }
 
     public void OtherDone()
@@ -175,6 +178,5 @@ public class MazePuzzle : MonoBehaviour
             Debug.Log("doneS");
         }
     }
-
 
 }
