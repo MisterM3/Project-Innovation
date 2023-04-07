@@ -53,8 +53,8 @@ public class MazePuzzle : MonoBehaviour
             previousButton = selectedButton;
 
             //Check if the pressed button is not diagonal from the previous button in the sequence and if it is not already in the sequence
-            if (button.transform.position.x == previousButton.transform.position.x ^
-            button.transform.position.y == previousButton.transform.position.y)
+            if (button.transform.localPosition.x == previousButton.transform.localPosition.x ^
+            button.transform.localPosition.y == previousButton.transform.localPosition.y)
             {
                 selectedButton = button;
                 selectedButtons.Add(button);
