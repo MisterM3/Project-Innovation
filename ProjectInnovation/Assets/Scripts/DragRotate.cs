@@ -11,6 +11,15 @@ public class DragRotate : MonoBehaviour, IDragHandler, IBeginDragHandler, IEndDr
     Quaternion dragStartInverseRotation;
 
 
+    [SerializeField] int amountSides = 4;
+
+    [SerializeField] int currentSide = 0;
+
+    [SerializeField] int slotIndex;
+
+    public UnityEventSlots changedSlotEvent;
+
+
     private void Awake()
     {
         // As an example: rotate the attached object
@@ -43,6 +52,24 @@ public class DragRotate : MonoBehaviour, IDragHandler, IBeginDragHandler, IEndDr
     public void OnEndDrag(PointerEventData eventData)
     {
 
+
+
+        Debug.Log(this.transform.localRotation.eulerAngles);
+
+
+
+        float rotationSlotZ = this.transform.localRotation.eulerAngles.z;
+
+        Debug.Log(this.transform.localRotation.eulerAngles);
+
+        if (rotationSlotZ < 360f - 45f && rotationSlotZ > 270f - 45f) currentSide = 0;
+        else if (rotationSlotZ < 270f - 45f && rotationSlotZ > 180 - 45f) currentSide = 1;
+        else if (rotationSlotZ < 180 - 45f && rotationSlotZ > 90 - 45f) currentSide = 2;
+        else if ((rotationSlotZ < 90 - 45f && rotationSlotZ > 0) || (rotationSlotZ < 360f && rotationSlotZ > 360f - 45f)) currentSide = 3;
+
+        Debug.Log(currentSide);
+
+        SnapRotation();
     }
 
     public void OnDrag(PointerEventData eventData)
@@ -56,6 +83,8 @@ public class DragRotate : MonoBehaviour, IDragHandler, IBeginDragHandler, IEndDr
                 OnAngleChanged(currentDragAngle * dragStartInverseRotation * dragStartRotation);
             }
         }
+
+        Debug.Log(transform.rotation.eulerAngles);
     }
 
     // Gets the point in worldspace corresponding to where the mouse is
@@ -66,5 +95,25 @@ public class DragRotate : MonoBehaviour, IDragHandler, IBeginDragHandler, IEndDr
             eventData.position,
             eventData.pressEventCamera,
             out worldPoint);
+    }
+
+    public void SnapRotation()
+    {
+
+        switch (currentSide)
+        {
+            case 0:
+                this.transform.localEulerAngles = new Vector3(0, 0, 270);
+                break;
+            case 1:
+                this.transform.localEulerAngles = new Vector3(0, 0, 180);
+                break;
+            case 2:
+                this.transform.localEulerAngles = new Vector3(0, 0, 90);
+                break;
+            case 3:
+                this.transform.localEulerAngles = new Vector3(0, 0);
+                break;
+        }
     }
 }

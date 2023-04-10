@@ -4,6 +4,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
+using UnityEngine.Events;
 
 public class MazePuzzle : MonoBehaviour
 {
@@ -20,6 +21,9 @@ public class MazePuzzle : MonoBehaviour
 
     private bool isDone = false;
     private bool isOtherDone = false;
+
+
+    public UnityEvent bothMazeDoneUEvent;
 
     void Start()
     {
@@ -163,8 +167,7 @@ public class MazePuzzle : MonoBehaviour
 
         if (isOtherDone)
         {
-            //Do shit
-            Debug.Log("doneF");
+            bothMazeDoneUEvent?.Invoke();
         }
 
     }
@@ -175,7 +178,7 @@ public class MazePuzzle : MonoBehaviour
         isOtherDone = true;
         if (isDone)
         {
-            Debug.Log("doneS");
+            bothMazeDoneUEvent?.Invoke();
         }
     }
 
