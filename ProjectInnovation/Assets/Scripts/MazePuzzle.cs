@@ -50,7 +50,7 @@ public class MazePuzzle : MonoBehaviour
 
             //Check if the pressed button is not diagonal from the previous button in the sequence and if it is not already in the sequence
             if (button.transform.position.x == previousButton.transform.position.x ^
-            button.transform.position.y == previousButton.transform.position.y )
+            button.transform.position.y == previousButton.transform.position.y)
             {
                 selectedButton = button;
                 selectedButtons.Add(button);
@@ -67,7 +67,7 @@ public class MazePuzzle : MonoBehaviour
             }
         }
     }
-    
+
     /// <summary>
     /// Updates lineRenderer lines in the sequence of buttons
     /// </summary>
@@ -112,7 +112,7 @@ public class MazePuzzle : MonoBehaviour
                     }
 
                 }
-                
+
                 if (item.transform.position.x == position1.x && item.transform.position.x == position2.x)
                 {
                     if (item.transform.position.y > position1.y && item.transform.position.y < position2.y ||
@@ -126,8 +126,8 @@ public class MazePuzzle : MonoBehaviour
 
         return true;
     }
-    
-    
+
+
     /// <summary>
     /// Resets puzzle
     /// </summary>

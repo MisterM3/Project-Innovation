@@ -37,8 +37,8 @@ public class ScreenManager : MonoBehaviour
                     SwitchCanvas(screens[3]);
                     break;
                 default:
-                    camera.transform.localRotation = Quaternion.Euler(0, 0, 0);
-                    SwitchCanvas(screens[0]);
+                    camera.transform.localRotation = Quaternion.Euler(0, 0, 270);
+                    SwitchCanvas(screens[2]);
                     break;
 
             }
