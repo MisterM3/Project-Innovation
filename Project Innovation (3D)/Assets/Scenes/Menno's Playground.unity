@@ -1403,144 +1403,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: ac0b09e7857660247b1477e93731de29, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
---- !u!1 &970761090
-GameObject:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  serializedVersion: 6
-  m_Component:
-  - component: {fileID: 970761092}
-  - component: {fileID: 970761091}
-  - component: {fileID: 970761093}
-  - component: {fileID: 970761094}
-  - component: {fileID: 970761095}
-  m_Layer: 0
-  m_Name: Network
-  m_TagString: Untagged
-  m_Icon: {fileID: 0}
-  m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
-  m_IsActive: 1
---- !u!114 &970761091
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 970761090}
-  m_Enabled: 0
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 42d297feaabe5f24e8d377778badb343, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  _hostname: 145.76.94.122
-  _port: 55555
-  receiver: {fileID: 970761093}
---- !u!4 &970761092
-Transform:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 970761090}
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 1, y: 1, z: 1}
-  m_ConstrainProportionsScale: 0
-  m_Children: []
-  m_Father: {fileID: 0}
-  m_RootOrder: 2
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &970761093
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 970761090}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: d49173ef59578cb43aa403960b8f3ff5, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  messages:
-  - messageName: SliderOne
-    fireEvent:
-      m_PersistentCalls:
-        m_Calls:
-        - m_Target: {fileID: 1062234717}
-          m_TargetAssemblyTypeName: SliderTEst, Assembly-CSharp
-          m_MethodName: LoadSolution
-          m_Mode: 0
-          m_Arguments:
-            m_ObjectArgument: {fileID: 0}
-            m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
-            m_IntArgument: 0
-            m_FloatArgument: 0
-            m_StringArgument: 
-            m_BoolArgument: 0
-          m_CallState: 2
-  - messageName: Maze2dDone
-    fireEvent:
-      m_PersistentCalls:
-        m_Calls:
-        - m_Target: {fileID: 941639853}
-          m_TargetAssemblyTypeName: MazePuzzle, Assembly-CSharp
-          m_MethodName: OtherDone
-          m_Mode: 1
-          m_Arguments:
-            m_ObjectArgument: {fileID: 0}
-            m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
-            m_IntArgument: 0
-            m_FloatArgument: 0
-            m_StringArgument: 
-            m_BoolArgument: 0
-          m_CallState: 2
-  - messageName: Maze3dDone
-    fireEvent:
-      m_PersistentCalls:
-        m_Calls:
-        - m_Target: {fileID: 2046576497}
-          m_TargetAssemblyTypeName: MazePuzzle, Assembly-CSharp
-          m_MethodName: OtherDone
-          m_Mode: 1
-          m_Arguments:
-            m_ObjectArgument: {fileID: 0}
-            m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
-            m_IntArgument: 0
-            m_FloatArgument: 0
-            m_StringArgument: 
-            m_BoolArgument: 0
-          m_CallState: 2
---- !u!114 &970761094
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 970761090}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: cfcca7e2a2670bb49aadcb9e9671d100, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  _hostname: 145.76.94.125
-  _port: 55555
-  receiver: {fileID: 970761093}
---- !u!114 &970761095
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 970761090}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: e5bd13ebe497a634b8dbb4aea3a8df6e, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
 --- !u!1 &1062234715
 GameObject:
   m_ObjectHideFlags: 0
@@ -2605,3 +2467,87 @@ PrefabInstance:
       objectReference: {fileID: 554107636}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 439cb20056a8fb746b8854c1d26237f0, type: 3}
+--- !u!1001 &7943569344925954785
+PrefabInstance:
+  m_ObjectHideFlags: 0
+  serializedVersion: 2
+  m_Modification:
+    m_TransformParent: {fileID: 0}
+    m_Modifications:
+    - target: {fileID: 7943569343988814179, guid: f02fa1366ef223243b9f329eb81b5522,
+        type: 3}
+      propertyPath: m_Name
+      value: Network
+      objectReference: {fileID: 0}
+    - target: {fileID: 7943569343988814180, guid: f02fa1366ef223243b9f329eb81b5522,
+        type: 3}
+      propertyPath: messages.Array.data[0].fireEvent.m_PersistentCalls.m_Calls.Array.data[0].m_Target
+      value: 
+      objectReference: {fileID: 1062234717}
+    - target: {fileID: 7943569343988814180, guid: f02fa1366ef223243b9f329eb81b5522,
+        type: 3}
+      propertyPath: messages.Array.data[1].fireEvent.m_PersistentCalls.m_Calls.Array.data[0].m_Target
+      value: 
+      objectReference: {fileID: 941639853}
+    - target: {fileID: 7943569343988814180, guid: f02fa1366ef223243b9f329eb81b5522,
+        type: 3}
+      propertyPath: messages.Array.data[2].fireEvent.m_PersistentCalls.m_Calls.Array.data[0].m_Target
+      value: 
+      objectReference: {fileID: 2046576497}
+    - target: {fileID: 7943569343988814181, guid: f02fa1366ef223243b9f329eb81b5522,
+        type: 3}
+      propertyPath: m_RootOrder
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 7943569343988814181, guid: f02fa1366ef223243b9f329eb81b5522,
+        type: 3}
+      propertyPath: m_LocalPosition.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 7943569343988814181, guid: f02fa1366ef223243b9f329eb81b5522,
+        type: 3}
+      propertyPath: m_LocalPosition.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 7943569343988814181, guid: f02fa1366ef223243b9f329eb81b5522,
+        type: 3}
+      propertyPath: m_LocalPosition.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 7943569343988814181, guid: f02fa1366ef223243b9f329eb81b5522,
+        type: 3}
+      propertyPath: m_LocalRotation.w
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 7943569343988814181, guid: f02fa1366ef223243b9f329eb81b5522,
+        type: 3}
+      propertyPath: m_LocalRotation.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 7943569343988814181, guid: f02fa1366ef223243b9f329eb81b5522,
+        type: 3}
+      propertyPath: m_LocalRotation.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 7943569343988814181, guid: f02fa1366ef223243b9f329eb81b5522,
+        type: 3}
+      propertyPath: m_LocalRotation.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 7943569343988814181, guid: f02fa1366ef223243b9f329eb81b5522,
+        type: 3}
+      propertyPath: m_LocalEulerAnglesHint.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 7943569343988814181, guid: f02fa1366ef223243b9f329eb81b5522,
+        type: 3}
+      propertyPath: m_LocalEulerAnglesHint.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 7943569343988814181, guid: f02fa1366ef223243b9f329eb81b5522,
+        type: 3}
+      propertyPath: m_LocalEulerAnglesHint.z
+      value: 0
+      objectReference: {fileID: 0}
+    m_RemovedComponents: []
+  m_SourcePrefab: {fileID: 100100000, guid: f02fa1366ef223243b9f329eb81b5522, type: 3}

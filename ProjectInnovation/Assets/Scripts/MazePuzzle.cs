@@ -3,6 +3,8 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
+using UnityEngine.Events;
+using shared;
 
 public class MazePuzzle : MonoBehaviour
 {
@@ -16,6 +18,13 @@ public class MazePuzzle : MonoBehaviour
     private Button previousButton = null;
 
     private bool isDone = false;
+    private bool isOtherDone = false;
+
+    public UnityEvent bothMazeDoneUEvent;
+
+    public string networkEventName;
+
+
 
     void Start()
     {
@@ -142,10 +151,36 @@ public class MazePuzzle : MonoBehaviour
     /// <summary>
     /// Called when puzzle is completed correctly
     /// </summary>
+    /// <summary>
+    /// Called when puzzle is completed correctly
+    /// </summary>
     private void WinCondition()
     {
         isDone = true;
         Debug.Log("do things");
+
+        ChatMessage message = new ChatMessage();
+        message.name = networkEventName;
+        message.message = "done";
+
+        TCPChatClient1.Instance.sendMessage(message);
+        Debug.Log("doneOne");
+
+        if (isOtherDone)
+        {
+            bothMazeDoneUEvent?.Invoke();
+        }
+
+    }
+
+    public void OtherDone()
+    {
+        Debug.Log("testfeafaf");
+        isOtherDone = true;
+        if (isDone)
+        {
+            bothMazeDoneUEvent?.Invoke();
+        }
     }
 
 
