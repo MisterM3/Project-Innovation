@@ -18,7 +18,7 @@ namespace shared {
      */
     public class TcpMessageChannel
     {
-        private TcpClient _client = null;                               //the underlying client connection
+        public TcpClient _client = null;                               //the underlying client connection
         private NetworkStream _stream = null;                           //the client's cached stream
         private IPEndPoint _remoteEndPoint = null;                      //cached endpoint info so we can still access it, even if the connection closes
         

@@ -99,10 +99,13 @@ namespace server
             }
 			catch (Exception e)
             {
+				removeAndCloseMember(pMember);
+			}
+			
 
-            }
 			
 			if (!pMember.Connected) removeAndCloseMember(pMember);
+			if (pMember._client == null) removeAndCloseMember(pMember);
 		}
 
 		/**
@@ -112,7 +115,7 @@ namespace server
 		{
 			removeMember(pMember);
 		//	_server.RemovePlayerInfo(pMember);
-			pMember.Close();
+		//	pMember.Close();
 
 			Log.LogInfo("Removed client at " + pMember.GetRemoteEndPoint(), this);
 		}

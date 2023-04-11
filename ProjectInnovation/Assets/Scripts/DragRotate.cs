@@ -17,6 +17,9 @@ public class DragRotate : MonoBehaviour, IDragHandler, IBeginDragHandler, IEndDr
 
     [SerializeField] int slotIndex;
 
+
+    float rotationPerSide;
+
     public UnityEventSlots changedSlotEvent;
 
 
@@ -24,6 +27,10 @@ public class DragRotate : MonoBehaviour, IDragHandler, IBeginDragHandler, IEndDr
     {
         // As an example: rotate the attached object
         OnAngleChanged += (rotation) => transform.localRotation = rotation;
+
+        rotationPerSide = 360f / amountSides;
+        Debug.Log(rotationPerSide);
+        Debug.Log(amountSides);
     }
 
 
@@ -62,13 +69,30 @@ public class DragRotate : MonoBehaviour, IDragHandler, IBeginDragHandler, IEndDr
 
         Debug.Log(this.transform.localRotation.eulerAngles);
 
-        if (rotationSlotZ < 360f - 45f && rotationSlotZ > 270f - 45f) currentSide = 0;
-        else if (rotationSlotZ < 270f - 45f && rotationSlotZ > 180 - 45f) currentSide = 1;
-        else if (rotationSlotZ < 180 - 45f && rotationSlotZ > 90 - 45f) currentSide = 2;
-        else if ((rotationSlotZ < 90 - 45f && rotationSlotZ > 0) || (rotationSlotZ < 360f && rotationSlotZ > 360f - 45f)) currentSide = 3;
+
+        for (int i = 0; i < amountSides; i++)
+        {
+            if (i + 1 == amountSides)
+            {
+                if ((rotationSlotZ < 360f - (rotationPerSide * i) && rotationSlotZ > 0) || (rotationSlotZ < 360f && rotationSlotZ > 360f - (rotationPerSide * .5f))) currentSide = i;
+                    continue;
+            }
+            if ((rotationSlotZ < 360f - (rotationPerSide * i + rotationPerSide * .5f)) && (rotationSlotZ > 360f - (rotationPerSide * (i + 1) + rotationPerSide * .5f)))
+            {
+                currentSide = i;
+                break;
+            }
+        }
+
+        /*
+        if (rotationSlotZ < 360f - (rotationPerSide / 2f) && rotationSlotZ > 360f - (rotationPerSide * 1.5f)) currentSide = 0;
+        else if (rotationSlotZ < 360f - (rotationPerSide * 1.5f) && rotationSlotZ > 360f - (rotationPerSide * 2.5f)) currentSide = 1;
+        else if (rotationSlotZ < 360f - (rotationPerSide * 2.5f) && rotationSlotZ > 360f - (rotationPerSide * 3.5f)) currentSide = 2;
+        else if ((rotationSlotZ < 360f - (rotationPerSide * 3.5f) && rotationSlotZ > 0) || (rotationSlotZ < 360f && rotationSlotZ > 360f - (rotationPerSide * .5f))) currentSide = 3;
 
         Debug.Log(currentSide);
 
+        */
         SnapRotation();
     }
 
@@ -100,6 +124,10 @@ public class DragRotate : MonoBehaviour, IDragHandler, IBeginDragHandler, IEndDr
     public void SnapRotation()
     {
 
+            this.transform.localEulerAngles = new Vector3(0, 0, 360f - ((currentSide + 1)* rotationPerSide));
+        
+
+        /*
         switch (currentSide)
         {
             case 0:
@@ -115,5 +143,6 @@ public class DragRotate : MonoBehaviour, IDragHandler, IBeginDragHandler, IEndDr
                 this.transform.localEulerAngles = new Vector3(0, 0);
                 break;
         }
+        */
     }
 }

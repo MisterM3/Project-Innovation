@@ -10,8 +10,6 @@ namespace server
 	 */ 
 	class LobbyRoom : SimpleRoom
 	{
-		//this list keeps tracks of which players are ready to play a game, this is a subset of the people in this room
-		private List<TcpMessageChannel> _readyMembers = new List<TcpMessageChannel>();
 
 		public LobbyRoom(TCPServerSample pOwner) : base(pOwner)
 		{
@@ -39,7 +37,7 @@ namespace server
 		protected override void removeMember(TcpMessageChannel pMember)
 		{
 			base.removeMember(pMember);
-			_readyMembers.Remove(pMember);
+		
 
 	//		sendLobbyUpdateCount();
 		}
@@ -47,7 +45,15 @@ namespace server
 		protected override void handleNetworkMessage(ASerializable pMessage, TcpMessageChannel pSender)
 		{
 			//if (pMessage is ChangeReadyStatusRequest) handleReadyNotification(pMessage as ChangeReadyStatusRequest, pSender);
-			sendToAll(pMessage);
+			try
+			{
+				sendToAll(pMessage);
+			}
+			catch
+            {
+				//removeMember();
+            }
+			//safeForEach(pMessage);
 		}
 		/*
 		private void handleReadyNotification(ChangeReadyStatusRequest pReadyNotification, TcpMessageChannel pSender)
