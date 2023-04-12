@@ -139,7 +139,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!224 &9891423
 RectTransform:
   m_ObjectHideFlags: 0
@@ -1340,7 +1340,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 7943569343988814183, guid: f02fa1366ef223243b9f329eb81b5522, type: 3}
       propertyPath: _hostname
-      value: localHost
+      value: 145.76.94.193
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: f02fa1366ef223243b9f329eb81b5522, type: 3}
