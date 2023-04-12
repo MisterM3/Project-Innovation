@@ -31,10 +31,10 @@ public class InventoryUIButton : MonoBehaviour
 
     public void AddItem()
     {
-
+        image.sprite = sprite;
     }
     public void RemoveItem()
     {
-
+        image.sprite = null;
     }
 }
