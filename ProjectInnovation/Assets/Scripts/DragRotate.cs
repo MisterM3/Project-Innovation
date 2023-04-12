@@ -6,14 +6,14 @@ public class DragRotate : MonoBehaviour, IDragHandler, IBeginDragHandler, IEndDr
 {
     // This event echoes the new local angle to which we have been dragged
     public event Action<Quaternion> OnAngleChanged;
-
+    public RotatingPuzzle rotatingPuzzle;
     Quaternion dragStartRotation;
     Quaternion dragStartInverseRotation;
 
 
     [SerializeField] int amountSides = 4;
 
-    [SerializeField] int currentSide = 0;
+    public int currentSide = 0;
 
     [SerializeField] int slotIndex;
 
@@ -58,16 +58,8 @@ public class DragRotate : MonoBehaviour, IDragHandler, IBeginDragHandler, IEndDr
     }
     public void OnEndDrag(PointerEventData eventData)
     {
-
-
-
-        Debug.Log(this.transform.localRotation.eulerAngles);
-
-
-
         float rotationSlotZ = this.transform.localRotation.eulerAngles.z;
 
-        Debug.Log(this.transform.localRotation.eulerAngles);
 
 
         for (int i = 0; i < amountSides; i++)
@@ -107,8 +99,6 @@ public class DragRotate : MonoBehaviour, IDragHandler, IBeginDragHandler, IEndDr
                 OnAngleChanged(currentDragAngle * dragStartInverseRotation * dragStartRotation);
             }
         }
-
-        Debug.Log(transform.rotation.eulerAngles);
     }
 
     // Gets the point in worldspace corresponding to where the mouse is
@@ -123,9 +113,9 @@ public class DragRotate : MonoBehaviour, IDragHandler, IBeginDragHandler, IEndDr
 
     public void SnapRotation()
     {
-
+            
             this.transform.localEulerAngles = new Vector3(0, 0, 360f - ((currentSide + 1)* rotationPerSide));
-        
+            rotatingPuzzle.Finished();
 
         /*
         switch (currentSide)
