@@ -60,7 +60,7 @@ public class RotateWheel : MonoBehaviour
 
             float difference = newPosition - oldPosition;
 
-            Vector3 extra = new Vector3(0, -difference, 0);
+            Vector3 extra = new Vector3(0, difference, 0);
             //this.transform.rotation = Quaternion.Euler(transform.eulerAngles + extra);
             transform.Rotate(extra);
            // Debug.Log(extra);
@@ -105,6 +105,8 @@ public class RotateWheel : MonoBehaviour
     public void SnapRotation()
     {
 
+
+        
         switch (currentSide)
         {
             case 0:

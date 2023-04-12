@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using UnityEditor.SceneManagement;
 using UnityEngine;
+using System;
 
 public class Inventory : MonoBehaviour
 {
@@ -10,12 +11,12 @@ public class Inventory : MonoBehaviour
     public static Inventory Instance { get; private set; }
 
     [SerializeField] GameObject[] sadgeList;
-    [SerializeField] IInventoryItem[] inventoryList;
+    [SerializeField] PickupableObject[] inventoryList;
 
-    IInventoryItem selectedItem;
-    
+    PickupableObject selectedItem;
 
-
+    EventHandler<int> onItemAdded;
+    EventHandler<int> onItemRemoved;
 
     public void Awake()
     {
@@ -35,7 +36,7 @@ public class Inventory : MonoBehaviour
 
     private void SetupInventory()
     {
-        inventoryList = new IInventoryItem[sadgeList.Length];
+        inventoryList = new PickupableObject[sadgeList.Length];
         for (int i = 0; i < sadgeList.Count(); i++)
         {
             if (sadgeList[i] == null)
@@ -43,7 +44,7 @@ public class Inventory : MonoBehaviour
                 inventoryList[i] = null;
                 continue;
             }
-            if (sadgeList[i].TryGetComponent<IInventoryItem>(out IInventoryItem item))
+            if (sadgeList[i].TryGetComponent<PickupableObject>(out PickupableObject item))
             {
                 inventoryList[i] = item;
                 continue;
@@ -52,7 +53,7 @@ public class Inventory : MonoBehaviour
             Debug.LogError("TRIED TO ADD A NOT IINVENTORYITEM AT START AT INDEX: " + i);
         }
     }
-    public bool TryAddItem(IInventoryItem item)
+    public bool TryAddItem(PickupableObject item)
     {
         for(int i = 0; i < inventoryList.Count(); i++)
         {
@@ -60,6 +61,7 @@ public class Inventory : MonoBehaviour
 
             Debug.Log($"Added {item} to inventory");
             inventoryList[i] = item;
+            onItemAdded?.Invoke(this, i);
             return true;
         }
 
@@ -67,13 +69,14 @@ public class Inventory : MonoBehaviour
         return false;
     }
 
-    public bool TryRemoveItem(IInventoryItem item)
+    public bool TryRemoveItem(PickupableObject item)
     {
         for (int i = 0; i < inventoryList.Count(); i++)
         {
             if (inventoryList[i] != item) continue;
 
             inventoryList[i] = null;
+            onItemRemoved?.Invoke(this, i);
             return true;
         }
 
@@ -88,7 +91,7 @@ public class Inventory : MonoBehaviour
         return true;
     }
 
-    public IInventoryItem Peek(int index)
+    public PickupableObject Peek(int index)
     {
         return inventoryList[index];
     }

@@ -3,8 +3,9 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class PickupableObject : MonoBehaviour, IInventoryItem
+public class PickupableObject : MonoBehaviour
 {
+    [SerializeField] Sprite spriteInInventory;
 
     private void OnMouseOver()
     {

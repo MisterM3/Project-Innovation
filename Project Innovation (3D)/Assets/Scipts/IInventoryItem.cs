@@ -6,4 +6,5 @@ using System;
 
 public interface IInventoryItem
 {
+    Sprite sprite { get; set; }
 }
