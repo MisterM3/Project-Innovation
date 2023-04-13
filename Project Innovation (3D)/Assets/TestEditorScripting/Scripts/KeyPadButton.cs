@@ -17,7 +17,6 @@ public class KeyPadButton : MonoBehaviour
     {
         if (Input.GetMouseButtonDown(0))
         {
-            Debug.Log("AHHH");
             OnObjectClicked?.Invoke(this.gameObject, number);
         }
     }

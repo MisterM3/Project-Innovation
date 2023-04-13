@@ -19,7 +19,11 @@ public class KeyPadObject : MonoBehaviour
 
 
     public  UnityEvent onSequenceCorrect;
-    public UnityEvent onSequenceFalse; 
+    public UnityEvent onSequenceFalse;
+
+    public EventHandler<int> onNumberInputted;
+
+    public bool puzzleCompleted = false;
 
     // Start is called before the first frame update
     void Start()
@@ -46,7 +50,7 @@ public class KeyPadObject : MonoBehaviour
 
     public void AddNumberToList(object sender, int numberAdded)
     {
-
+        if (puzzleCompleted) return;
         if (!(sender is GameObject)) Debug.LogError("SENDER OF EVENT IS NOT A GAMEOBJECT BUT A " + sender.GetType());
 
 
@@ -56,6 +60,7 @@ public class KeyPadObject : MonoBehaviour
         if (numberNow > 0)
         {
             countNow++;
+            onNumberInputted?.Invoke(this, numberNow);
         }
 
         Debug.Log(numberNow);
@@ -75,14 +80,19 @@ public class KeyPadObject : MonoBehaviour
         countNow= 0;
         numberNow= 0;
         onSequenceFalse?.Invoke();
+        onNumberInputted?.Invoke(this, numberNow);
 
-       
+
     }
 
 
     public void CheckCorrect()
     {
-        if (numberNow == goodNumber) onSequenceCorrect?.Invoke();
+        if (numberNow == goodNumber)
+        {
+            onSequenceCorrect?.Invoke();
+            puzzleCompleted = true;
+        }
         else ResetCode();
     }
 
