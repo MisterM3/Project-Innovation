@@ -21,6 +21,7 @@ public class RotatingCirclePuzzle : MonoBehaviour
 
     float rotationPerSide;
 
+
     private void Awake()
     {
         rotationPerSide = 360f / amountSides;

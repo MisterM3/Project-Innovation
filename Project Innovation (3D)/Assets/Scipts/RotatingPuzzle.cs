@@ -2,6 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
+using UnityEngine.Events;
 
 public class RotatingPuzzle : MonoBehaviour
 {
@@ -9,6 +10,8 @@ public class RotatingPuzzle : MonoBehaviour
     [SerializeField] private List<int> currentRotations = new List<int>();
     bool finished;
 
+
+    public UnityEvent circleDone;
 
     public void ChangeSlotsPosition(int index, int slotNumber)
     {
@@ -21,7 +24,7 @@ public class RotatingPuzzle : MonoBehaviour
     {
         for (int i = 0; i < currentRotations.Count; i++)
         {
-           // if (currentRotations[i].currentSide != correctRotations[i]) return false;
+            if (currentRotations[i] != correctRotations[i]) return false;
         }
 
         return true;
@@ -32,7 +35,7 @@ public class RotatingPuzzle : MonoBehaviour
         if (CheckCorrect())
         {
             finished = true;
-
+            circleDone.Invoke();
         }
 
     }

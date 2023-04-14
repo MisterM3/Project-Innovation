@@ -5,7 +5,7 @@ using UnityEngine;
 public class AddPyramid : MonoBehaviour
 {
 
-    public bool open = true;
+    public bool open = false;
     bool empty = false;
     public void OnMouseOver()
     {
@@ -17,5 +17,10 @@ public class AddPyramid : MonoBehaviour
             PyramidItem.Instance.AddPyramid();
             empty = true;
         }
+    }
+
+    public void OpenChest()
+    {
+        open = true;
     }
 }
