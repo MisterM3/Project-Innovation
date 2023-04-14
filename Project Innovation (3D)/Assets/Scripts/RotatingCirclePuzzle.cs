@@ -57,12 +57,13 @@ public class RotatingCirclePuzzle : MonoBehaviour
 
         if (Input.GetMouseButton(0))
         {
+            
 
             Vector2 newPosition = Input.mousePosition;
 
             Vector2 difference = newPosition - oldPosition;
 
-            float extraF = difference.x + difference.y;
+            float extraF = Mathf.Abs(difference.x + difference.y);
 
             Vector3 extra = new Vector3(0, 0, extraF);
             //this.transform.rotation = Quaternion.Euler(transform.eulerAngles + extra);
@@ -75,9 +76,13 @@ public class RotatingCirclePuzzle : MonoBehaviour
 
 
 
-            float rotationSlotY = this.transform.localRotation.eulerAngles.y;
 
             Debug.Log(this.transform.localRotation.eulerAngles);
+            
+
+
+                float rotationSlotY = this.transform.localRotation.eulerAngles.y;
+
 
 
             /*
