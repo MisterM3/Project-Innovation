@@ -21,7 +21,7 @@ public class RotatingPuzzle : MonoBehaviour
     {
         for (int i = 0; i < currentRotations.Count; i++)
         {
-            if (currentRotations[i].currentSide != correctRotations[i]) return false;
+           // if (currentRotations[i].currentSide != correctRotations[i]) return false;
         }
 
         return true;
