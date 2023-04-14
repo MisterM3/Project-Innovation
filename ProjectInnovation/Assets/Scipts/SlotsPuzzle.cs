@@ -9,16 +9,28 @@ public class SlotsPuzzle : MonoBehaviour
     [SerializeField] int[] slotCurrentPosition;
 
     public UnityEvent slotsDoneEvent;
+
+    public UnityEvent slotsWrongAfterCorrect;
+
+    public UnityEvent bothSlotsDoneEvent;
+
+    private bool thisDone = false;
+    private bool otherDone = false;
     public void ChangeSlotsPosition(int index, int slotNumber)
     {
         slotCurrentPosition[index] = slotNumber;
 
-        if (CheckCorrect()) Win();
+        if (CheckCorrect())
+        {
+            Win();
+            slotsDoneEvent.Invoke();
+        }
+        else NotCorrect();
     }
 
     public bool CheckCorrect()
     {
-        for(int i = 0; i < slotCurrentPosition.Length; i++)
+        for (int i = 0; i < slotCurrentPosition.Length; i++)
         {
             if (slotCurrentPosition[i] != slotPositionsSolution[i]) return false;
         }
@@ -28,7 +40,32 @@ public class SlotsPuzzle : MonoBehaviour
 
     public void Win()
     {
-        slotsDoneEvent.Invoke();
+        thisDone = true;
+        if (otherDone)
+        {
+            bothSlotsDoneEvent.Invoke();
+        }
+    }
 
+    public void NotCorrect()
+    {
+        if (!thisDone) return;
+
+        thisDone = false;
+        slotsWrongAfterCorrect.Invoke();
+    }
+
+    public void OtherDone()
+    {
+        otherDone = true;
+        if (thisDone)
+        {
+            bothSlotsDoneEvent.Invoke();
+        }
+    }
+
+    public void OtherWrong()
+    {
+        otherDone = false;
     }
 }

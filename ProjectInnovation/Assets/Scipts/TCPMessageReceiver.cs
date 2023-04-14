@@ -50,7 +50,7 @@ public class TCPMessageReceiver : MonoBehaviour
         {
            // Packet packet = new Packet();
 
-            Debug.Log(solution.name);
+            //sDebug.Log(solution.name);
 
             if (messageEvent.messageName == solution.name)
             {

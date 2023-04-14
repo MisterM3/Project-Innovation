@@ -42,7 +42,7 @@ public class TCPChatClient1 : MonoBehaviour
         {
             ASerializable message = _client.ReceiveMessage();
 
-            Debug.Log("reveived");
+            //Debug.Log("reveived");
             receiver.DecodeASerializable(message);
             return;
 
@@ -138,7 +138,7 @@ public class TCPChatClient1 : MonoBehaviour
 
     public void sendMessage(ASerializable ser)
     {
-        Debug.Log("te");
+        Debug.Log(ser.name);
         _client.SendMessage(ser);
     }
 

@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
 using Cinemachine;
 
 public class ScreenManager : MonoBehaviour
@@ -8,6 +9,7 @@ public class ScreenManager : MonoBehaviour
     DeviceOrientation phoneOrientation;
     [SerializeField] private List<Canvas> screens;
     [SerializeField] private new CinemachineVirtualCamera camera;
+    public Image pyramid;
 
     private bool inPuzzle = false;
 
@@ -22,18 +24,22 @@ public class ScreenManager : MonoBehaviour
             {
                 case DeviceOrientation.Portrait:
                     camera.transform.localRotation = Quaternion.Euler(0, 0, 0);
+                    pyramid.transform.localRotation = Quaternion.Euler(0, 0, 0);
                     SwitchCanvas(screens[0]);
                     break;
                 case DeviceOrientation.LandscapeLeft:
                     camera.transform.localRotation = Quaternion.Euler(0, 0, -270);
+                    pyramid.transform.localRotation = Quaternion.Euler(0, 0, 270);
                     SwitchCanvas(screens[1]);
                     break;
                 case DeviceOrientation.LandscapeRight:
                     camera.transform.localRotation = Quaternion.Euler(0, 0, 270);
+                    pyramid.transform.localRotation = Quaternion.Euler(0, 0, -270);
                     SwitchCanvas(screens[2]);
                     break;
                 case DeviceOrientation.PortraitUpsideDown:
                     camera.transform.localRotation = Quaternion.Euler(0, 0, 180);
+                    pyramid.transform.localRotation = Quaternion.Euler(0, 0, 180);
                     SwitchCanvas(screens[3]);
                     break;
                 default:
