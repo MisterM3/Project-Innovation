@@ -7,7 +7,12 @@ public class SceneSwitcher : MonoBehaviour
 {
     public void SwitchToGame()
     {
-        SceneManager.LoadScene("GameScreen"); 
+        SceneManager.LoadScene("GameScreen");
+    }
+
+    public void SwitchToEndScreen()
+    {
+        SceneManager.LoadScene("EndScreen");
     }
 
     public void QuitTheGame()
