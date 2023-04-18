@@ -18423,10 +18423,25 @@ PrefabInstance:
       propertyPath: m_IsActive
       value: 1
       objectReference: {fileID: 0}
+    - target: {fileID: 4342521667976372108, guid: 68da95b24852545468e407b940315e55,
+        type: 3}
+      propertyPath: currentSide
+      value: 2
+      objectReference: {fileID: 0}
     - target: {fileID: 4342521668064194438, guid: 68da95b24852545468e407b940315e55,
         type: 3}
       propertyPath: m_IsActive
       value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 4342521668097442781, guid: 68da95b24852545468e407b940315e55,
+        type: 3}
+      propertyPath: currentSide
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 4342521668161418468, guid: 68da95b24852545468e407b940315e55,
+        type: 3}
+      propertyPath: currentSide
+      value: 2
       objectReference: {fileID: 0}
     - target: {fileID: 4342521668289422516, guid: 68da95b24852545468e407b940315e55,
         type: 3}
@@ -18482,6 +18497,11 @@ PrefabInstance:
         type: 3}
       propertyPath: m_AnchoredPosition.y
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4342521668301080959, guid: 68da95b24852545468e407b940315e55,
+        type: 3}
+      propertyPath: currentSide
+      value: 2
       objectReference: {fileID: 0}
     - target: {fileID: 4342521668351412945, guid: 68da95b24852545468e407b940315e55,
         type: 3}
@@ -18923,6 +18943,26 @@ PrefabInstance:
       propertyPath: m_Materials.Array.data[0]
       value: 
       objectReference: {fileID: 2100000, guid: 16a778a9b5f80894d9965d8e1fc25fb5, type: 2}
+    - target: {fileID: 4342521669406108923, guid: 68da95b24852545468e407b940315e55,
+        type: 3}
+      propertyPath: slotCurrentPosition.Array.data[0]
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 4342521669406108923, guid: 68da95b24852545468e407b940315e55,
+        type: 3}
+      propertyPath: slotCurrentPosition.Array.data[1]
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 4342521669406108923, guid: 68da95b24852545468e407b940315e55,
+        type: 3}
+      propertyPath: slotCurrentPosition.Array.data[2]
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 4342521669406108923, guid: 68da95b24852545468e407b940315e55,
+        type: 3}
+      propertyPath: slotCurrentPosition.Array.data[3]
+      value: 2
+      objectReference: {fileID: 0}
     - target: {fileID: 4342521669406108923, guid: 68da95b24852545468e407b940315e55,
         type: 3}
       propertyPath: slotsDoneEvent.m_PersistentCalls.m_Calls.Array.size
@@ -19396,7 +19436,7 @@ PrefabInstance:
     - target: {fileID: 4342521669923999556, guid: 68da95b24852545468e407b940315e55,
         type: 3}
       propertyPath: m_LocalPosition.y
-      value: 0.867
+      value: 0.282
       objectReference: {fileID: 0}
     - target: {fileID: 4342521669923999558, guid: 68da95b24852545468e407b940315e55,
         type: 3}
