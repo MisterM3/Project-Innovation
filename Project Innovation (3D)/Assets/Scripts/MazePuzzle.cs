@@ -22,6 +22,7 @@ public class MazePuzzle : MonoBehaviour
     private bool isDone = false;
     private bool isOtherDone = false;
 
+    [SerializeField] Vector3 offSet;
 
     public UnityEvent bothMazeDoneUEvent;
 
@@ -84,7 +85,7 @@ public class MazePuzzle : MonoBehaviour
         Vector3 position = new Vector3();
         lineRenderer.positionCount = selectedButtons.Count;
 
-        position = selectedButtons[selectedButtons.Count - 1].gameObject.transform.localPosition + new Vector3(0.5f, -0.5f);
+        position = selectedButtons[selectedButtons.Count - 1].gameObject.transform.localPosition + offSet;
 
         lineRenderer.useWorldSpace = false;
 
