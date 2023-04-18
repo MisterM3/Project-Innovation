@@ -59,7 +59,6 @@ public class SlotsPuzzle : MonoBehaviour
     public void OtherDone()
     {
 
-        Debug.LogError("deafafeagaeg Done");
         otherDone= true;
         if (thisDone)
         {

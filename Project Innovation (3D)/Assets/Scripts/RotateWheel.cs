@@ -44,7 +44,6 @@ public class RotateWheel : MonoBehaviour
 
     float oldPosition;
 
-    [SerializeField] AudioSource source;
     private void OnMouseOver()
     {
         if (isDone) return;
@@ -62,7 +61,7 @@ public class RotateWheel : MonoBehaviour
 
             float difference = newPosition - oldPosition;
 
-            Vector3 extra = new Vector3(0, difference, 0);
+            Vector3 extra = new Vector3(0, difference * 1.5f, 0);
             //this.transform.rotation = Quaternion.Euler(transform.eulerAngles + extra);
             transform.Rotate(extra);
            // Debug.Log(extra);
