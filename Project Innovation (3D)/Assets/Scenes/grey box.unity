@@ -18423,6 +18423,11 @@ PrefabInstance:
       propertyPath: m_IsActive
       value: 1
       objectReference: {fileID: 0}
+    - target: {fileID: 4342521667976372098, guid: 68da95b24852545468e407b940315e55,
+        type: 3}
+      propertyPath: m_Materials.Array.data[0]
+      value: 
+      objectReference: {fileID: 2100000, guid: 9f172e23f114cde4fadd0eb42f22224e, type: 2}
     - target: {fileID: 4342521667976372108, guid: 68da95b24852545468e407b940315e55,
         type: 3}
       propertyPath: currentSide
@@ -18433,6 +18438,11 @@ PrefabInstance:
       propertyPath: m_IsActive
       value: 1
       objectReference: {fileID: 0}
+    - target: {fileID: 4342521668097442771, guid: 68da95b24852545468e407b940315e55,
+        type: 3}
+      propertyPath: m_Materials.Array.data[0]
+      value: 
+      objectReference: {fileID: 2100000, guid: 9f172e23f114cde4fadd0eb42f22224e, type: 2}
     - target: {fileID: 4342521668097442781, guid: 68da95b24852545468e407b940315e55,
         type: 3}
       propertyPath: currentSide
@@ -18443,6 +18453,11 @@ PrefabInstance:
       propertyPath: currentSide
       value: 2
       objectReference: {fileID: 0}
+    - target: {fileID: 4342521668161418490, guid: 68da95b24852545468e407b940315e55,
+        type: 3}
+      propertyPath: m_Materials.Array.data[0]
+      value: 
+      objectReference: {fileID: 2100000, guid: 9f172e23f114cde4fadd0eb42f22224e, type: 2}
     - target: {fileID: 4342521668289422516, guid: 68da95b24852545468e407b940315e55,
         type: 3}
       propertyPath: m_AnchorMax.y
@@ -18498,6 +18513,11 @@ PrefabInstance:
       propertyPath: m_AnchoredPosition.y
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 4342521668301080957, guid: 68da95b24852545468e407b940315e55,
+        type: 3}
+      propertyPath: m_Materials.Array.data[0]
+      value: 
+      objectReference: {fileID: 2100000, guid: 9f172e23f114cde4fadd0eb42f22224e, type: 2}
     - target: {fileID: 4342521668301080959, guid: 68da95b24852545468e407b940315e55,
         type: 3}
       propertyPath: currentSide
@@ -19436,7 +19456,7 @@ PrefabInstance:
     - target: {fileID: 4342521669923999556, guid: 68da95b24852545468e407b940315e55,
         type: 3}
       propertyPath: m_LocalPosition.y
-      value: 0.282
+      value: 0.275
       objectReference: {fileID: 0}
     - target: {fileID: 4342521669923999558, guid: 68da95b24852545468e407b940315e55,
         type: 3}
